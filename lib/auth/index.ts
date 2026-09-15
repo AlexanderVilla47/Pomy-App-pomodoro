@@ -23,6 +23,12 @@ export const auth = betterAuth({
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      // Sin esto better-auth no manda `prompt` a la URL de autorizacion, y
+      // Google, cuando ve una unica sesion viva en el navegador, entra con esa
+      // sin preguntar. Salir de Pomodoro borra la cookie de Pomodoro, no la
+      // sesion de Google: en mobile, donde esa sesion es la cuenta del
+      // dispositivo, cambiar de cuenta quedaba imposible desde la app.
+      prompt: "select_account",
     },
   },
 });
