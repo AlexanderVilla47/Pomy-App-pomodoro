@@ -203,3 +203,10 @@ Topic keys: `convenciones/github-flow-y-modo-autonomo`,
 - **Desbloquear un `AudioContext` no desbloquea los `HTMLAudioElement`.** Son
   dominios de activación distintos. Todo lo que tenga que sonar sin un gesto del
   usuario necesita su propio desbloqueo previo.
+- **Cerrar sesión en la app no cierra la sesión de Google.** Otra vez dos
+  dominios distintos: `signOut()` borra la cookie de Pomodoro y nada más. Sin
+  `prompt: "select_account"` en el proveedor, better-auth no manda el parámetro
+  a la URL de autorización y Google, cuando hay una sola sesión viva, entra con
+  esa sin preguntar — en mobile eso es siempre la cuenta del dispositivo.
+  `prompt` **sólo se configura a nivel proveedor**: el endpoint
+  `sign-in/social` no lo acepta por llamada, únicamente `loginHint`.
