@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 import withSerwist from "@serwist/next";
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   serverExternalPackages: ["postgres", "pg", "better-auth"],
   images: {
     remotePatterns: [
